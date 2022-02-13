@@ -1,55 +1,46 @@
 <template>
-    <header>
-      <h1>Countries API</h1>
-    </header>
-    <section class="countries">
-      <div class="countries-wrapper" v-for="(countries, idx) in countriesName" :key="idx">
-        <div class="card">
-          <img :src="countries.flag">
-          <div class="card-body">
-            <h2>{{ countries.name }}</h2>
-            <p>IS0: {{ countries.iso2 }}</p>
-          </div>
+  <header>
+    <h1>EU countries</h1>
+  </header>
+  <section class="countries">
+    <div
+      class="countries-wrapper"
+      v-for="(country, idx) in countries"
+      :key="idx"
+    >
+      <div class="card">
+        <img :src="country.flag" />
+        <div class="card-body">
+          <h2>{{ country.name }}</h2>
+          <p>IS0: {{ country.iso2 }}</p>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
 </template>
 
 <script>
-import { toRefs, reactive } from "vue";
-
+import countries from "./assets/countries";
 export default {
-  name: 'App',
+  name: "EUMainPage",
 
-  setup() {
-    const state = reactive({
-      countriesName: {},
-      countries: "",
-    });
-
-    console.log(state.countries);
-
-    fetch("https://countriesnow.space/api/v0.1/countries/flag/images")
-    .then(response => response.json())
-    .then(data => {
-      //console.log(data.data[1].flag);
-      state.countriesName = data.data;
-    })
-
+  data() {
     return {
-      ...toRefs(state),
-    }
-  }
-
-}
+      countries: [],
+    };
+  },
+  created() {
+    this.countries = countries;
+  },
+};
 </script>
 
 <style>
 #app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    color: #2c3e50;
+  font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  color: #2c3e50;
 }
 
 header {
@@ -58,56 +49,54 @@ header {
 }
 
 .countries {
-    min-height: 70vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
+  min-height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-.card{
-    width: 300px;
-    height: 189px;
-    cursor: pointer;
-    border-radius: 16px;
-    box-shadow: 0 0 13px 0px rgba(0,0,0,.3);
-    transition: .5s;
-    overflow: hidden;
-    margin: .85rem;
+.card {
+  width: 300px;
+  height: 189px;
+  cursor: pointer;
+  border-radius: 16px;
+  box-shadow: 0 0 13px 0px rgba(0, 0, 0, 0.3);
+  transition: 0.5s;
+  overflow: hidden;
+  margin: 0.85rem;
 }
 
-.card:hover{
-    height: 280px;
+.card:hover {
+  height: 280px;
 }
 
-.card img{
-    width: 302px;
-    height: 189px;
-    border-radius: 16px;
-    transition: .5s;
+.card img {
+  width: 302px;
+  height: 189px;
+  border-radius: 16px;
+  transition: 0.5s;
 }
 
-.card:hover img{
-    border-radius: 16px 16px 0 0;
+.card:hover img {
+  border-radius: 16px 16px 0 0;
 }
 
-.card .card-body{
-    padding: .5rem .85rem 1rem;
-    height: 0;
+.card .card-body {
+  padding: 0.5rem 0.85rem 1rem;
+  height: 0;
 }
 
-.card .card-body h2{
-    margin: .5rem 0;
-    font-size: .85rem;
-    color: hsl(240, 27%, 39%);
-    letter-spacing: 3px;
+.card .card-body h2 {
+  margin: 0.5rem 0;
+  font-size: 0.85rem;
+  color: hsl(240, 27%, 39%);
+  letter-spacing: 3px;
 }
 
-.card .card-body p{
-    text-align: justify;
-    font-size: .9rem;
-    line-height: 25px;
+.card .card-body p {
+  text-align: justify;
+  font-size: 0.9rem;
+  line-height: 25px;
 }
-
-
 </style>

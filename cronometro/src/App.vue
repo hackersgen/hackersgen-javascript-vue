@@ -4,15 +4,15 @@
     <a class="timer">{{zfill(hour)}}:{{zfill(min)}}:{{zfill(sec)}}</a>
 
     <div class="btns">
-      <button class="btn btn-margin" @click="play">{{timer !== null ? "PAUSAR" :"VAI" }}</button>
-      <button class="btn btn-margin" @click="clear">LIMPAR</button>
+      <button class="btn btn-margin" @click="play">{{timer !== null ? "PAUSA" :"VIA" }}</button>
+      <button class="btn btn-margin" @click="clear">RESET</button>
     </div>
 
     <div class="interval" v-show="intervalList.length > 0">
       <ul>
-        <li v-for="interval in intervalList" :key="interval" >VOCÊ PAUSOU EM {{interval}}</li>
+        <li v-for="interval in intervalList" :key="interval" >TEMPO: {{interval}}</li>
       </ul>
-      <button class="btn" @click="clearIntervalList">LIMPAR HISTÓRICO</button>
+      <button class="btn" @click="clearIntervalList">SVUOTA STORICO</button>
     </div>
 
   </div>
@@ -109,7 +109,6 @@ export default {
 .btn{
   -webkit-user-select: none;
   -moz-user-select: none;
-
   width: 150px;
   background-color: #fff;
   font-size: 20px;
