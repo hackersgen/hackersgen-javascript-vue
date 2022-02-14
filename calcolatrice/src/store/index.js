@@ -6,9 +6,9 @@ export default createStore({
     calculations: [],
   },
   getters: {
-    lastAnswer: state => {
-      return state.calculations.at(-1).answer
-    }
+    lastAnswer: (state) => {
+      return state.calculations.at(-1).answer;
+    },
   },
   mutations: {
     PUSH_TO_LOG(state, calculation) {
@@ -16,11 +16,13 @@ export default createStore({
     },
   },
   actions: {
-    calculate({ commit }, { firstNumber, operator, secondNumber }) {
-      if(operator === null) {
-        operator = '+'
+    calculate(
+      { commit },
+      { firstNumber, operator, secondNumber }
+    ) {
+      if (operator === null) {
+        operator = "+";
       }
-
 
       let answer;
       switch (operator) {
@@ -38,9 +40,9 @@ export default createStore({
           break;
       }
 
-      if(answer !== 0 && !parseFloat(answer)) {
-        console.log("Unable to calculate...")
-        return Promise.reject(new Error("Not a number"))
+      if (answer !== 0 && !parseFloat(answer)) {
+        console.log("Unable to calculate...");
+        return Promise.reject(new Error("Not a number"));
       }
 
       const calc = {
@@ -48,21 +50,17 @@ export default createStore({
         operator: operator,
         secondNumber: secondNumber,
         answer: answer,
-        id: this.state.count++
-      }
+        id: this.state.count++,
+      };
 
-
-      console.log(calc)
-
-      commit('PUSH_TO_LOG', calc)
+      commit("PUSH_TO_LOG", calc);
     },
     saveToLog({ commit }, calculation) {
-
-      commit('PUSH_TO_LOG', {
+      commit("PUSH_TO_LOG", {
         ...calculation,
-        id: this.state.count++
-      })
-    }
+        id: this.state.count++,
+      });
+    },
   },
   modules: {},
 });
