@@ -3,24 +3,22 @@
     <h1>EU countries</h1>
   </header>
   <section class="countries">
+    <!-- creare un div countries-wrapper per ogni country in this.countries -->
     <div
       class="countries-wrapper"
-      v-for="(country, idx) in countries"
-      :key="idx"
+      
     >
+    
       <div class="card">
-        <img :src="country.flag" />
-        <div class="card-body">
-          <h2>{{ country.name }}</h2>
-          <p>IS0: {{ country.iso2 }}</p>
-        </div>
+        <!-- inserire visualizzazione per le countries -->
       </div>
     </div>
   </section>
 </template>
 
 <script>
-import countries from "./assets/countries";
+// bisogna importare il file countries.js
+
 export default {
   name: "EUMainPage",
 
@@ -30,7 +28,7 @@ export default {
     };
   },
   created() {
-    this.countries = countries;
+    // settare il file importato come valore della variabile this.countries
   },
 };
 </script>
